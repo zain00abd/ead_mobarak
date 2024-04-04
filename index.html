@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parse/2.19.0/parse.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Bootstrab_File/css/bootstrap.css">
+  <title>Document</title>
+</head>
+<body>
+<div>
+
+</div>
+
+<video src="https://www.youtube.com/watch?v=vP9Ktnlwc94"></video>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h1>JS SDK</h1>
+  <input id="username" type="text" placeholder="Username" />
+  <button id="createButton">Create User</button> 
+
+<script type="text/javascript">
+    // Initialize Parse
+    Parse.initialize("MqouS3ApuDDhfBqJQkoPRRKBxspml4NwGBqmMe8p", "spr2RrCY0W0Y4kJWeC1kt9Uw4Vr1ziBKg0nsCToY");
+    Parse.serverURL = "https://parseapi.back4app.com/";
+
+    // Create a new User with only username and a default password
+    async function createParseData() {
+  let ZData = new Parse.Object("ZDATA");
+  ZData.set("name", document.getElementById("username").value);
+  
+  try {
+    let result = await ZData.save();
+    if (result) {
+      alert(`New data created with success! ObjectId: ${result.id}`);
+    }
+  } catch (error) {
+    alert(`Error: ${error.message}`);
+  }
+}
+
+
+    document.getElementById("createButton").addEventListener("click", async function () {
+      createParseData();
+    });
+  </script>
+
+
+  <script src="Bootstrab_File/js/bootstrap.js"></script>
+  <script src="Bootstrab_File/poper/popper.min.js"></script>
+  <script src="Bootstrab_File/jquery/jquery-3.7.1.min.js"></script>
+</body>
+</html>
