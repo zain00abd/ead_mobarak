@@ -5,14 +5,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Bootstrab_File/css/bootstrap.css">
+  <link rel="stylesheet" href="fonter/css/all.min.css">
   <title>Document</title>
-</head>
-<body>
-<div>
+  <style>
 
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap');
+body {
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+}
+
+#stars-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.fa-star {
+  position: absolute;
+  color: #FFD43B;
+
+}
+input::placeholder{
+  color: rgba(255, 255, 255, 0.452);
+  text-align: center;
+}
+input{
+  text-align: center;
+  color: aliceblue;
+  outline: none;
+  border: none;
+  border-radius: 12px;
+}
+
+#changingText {
+  top: 50%;
+  text-align: center;
+  position: absolute;
+
+
+  font-size: 60px; /* حجم الخط، يمكن تعديله */
+  color: gold; /* لون الخط */
+  text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px rgb(204, 4, 4), 0 0 40px rgb(255, 187, 0), 0 0 50px gold, 0 0 60px yellow, 0 0 70px rgb(204, 4, 4); /* تأثير الوهج */
+  direction: rtl; /* لضمان أن يكون النص من اليمين لليسار */
+}
+
+  </style>
+</head>
+<body style="
+
+ height: 100vh;
+ background: url(gte.jpg);
+ ">
+
+<div style="position: absolute; top: 50px; text-align: center; width: 100%; color: rgb(255, 255, 255); text-shadow: 0 0 10px   rgb(236, 235, 224), 0 0 60px rgb(255, 255, 255), 0 0 70px rgb(255, 253, 253);">
+
+  <h1 id="name_user" style=" display: inline;   text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 243, 243), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px yellow, 0 0 70px rgb(255, 253, 253); /* تأثير الوهج */
+  color: #ffc13b;"></h1>
+  <h1 style=" display: inline;"> يهنئكم بحلول عيد الفطر المبارك </h1>
+  <h1> كل عام وانتم بخير </h1>
+</div>
+<div class="" style="display: flex; justify-content: center; align-items: center;">
+  <div style="opacity: 0.6;" id="stars-container"></div>
+
+
+
+
+
+
+
+  <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
+  <button id="yyy" onclick="playAudio()">تشغيل</button>
+  
+  
+  
+  <!-- <video src="https://www.youtube.com/watch?v=vP9Ktnlwc94"></video> -->
+  
+  
+  
+  
+  
+  
+  <h1 id="changingText" style="transition: opacity 0.5s ease-in-out; opacity: 1;"> الله وأكبر  </h1>
+  <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 10%;"></i>
+  <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 57%; "></i>
+  <footer class="row justify-content-evenly" style="background-color: rgba(210, 206, 255, 0.123); position: absolute; bottom: 0px; width: 100%; height: 50px; padding: 5px;">
+    <input class="col-6 " type="text" style="width: 65%; background-color: rgb(39, 39, 39);" placeholder=" ادخل اسمك هنا ">
+    <button class="col-6 btn btn-success" style="width: 25%;">3</button>
+
+  </footer>
 </div>
 
-<video src="https://www.youtube.com/watch?v=vP9Ktnlwc94"></video>
 
 
 
@@ -27,9 +113,11 @@
 
 
 
-  <h1>JS SDK</h1>
+
+
+  <!-- <h1>JS SDK</h1>
   <input id="username" type="text" placeholder="Username" />
-  <button id="createButton">Create User</button> 
+  <button id="createButton">Create User</button>
 
 <script type="text/javascript">
     // Initialize Parse
@@ -55,11 +143,101 @@
     document.getElementById("createButton").addEventListener("click", async function () {
       createParseData();
     });
-  </script>
+  </script> -->
 
 
   <script src="Bootstrab_File/js/bootstrap.js"></script>
   <script src="Bootstrab_File/poper/popper.min.js"></script>
   <script src="Bootstrab_File/jquery/jquery-3.7.1.min.js"></script>
+
+  <script>
+    function playAudio() {
+      var audio = document.getElementById("audioPlayer");
+      audio.play();
+      restartInterval()
+    }
+
+var texts = ["الله وأكبر", "الله وأكبر", "لا إلاه إلا الله", "الله وأكبر", "الله وأكبر", "و لله الحمد"];
+var currentIndex = 0;
+var intervalId = null; // لتخزين معرف setInterval
+var switchInterval = 4000; // الفترة الافتراضية بين التبديلات
+var needRestart = false; // علامة لتحديد ما إذا كان يجب إعادة تشغيل الفاصل الزمني
+
+function changeText() {
+  var textElement = document.getElementById("changingText");
+  textElement.style.opacity = 0;
+  textElement.style
+
+  setTimeout(function() {
+    textElement.innerHTML = texts[currentIndex];
+    textElement.style.opacity = 1;
+
+    currentIndex++;
+    
+    // تحقق إذا كانت هذه هي الدورة الأخيرة للنص
+    if (currentIndex >= texts.length) {
+      currentIndex = 0; // إعادة التعيين لبدء الدورة من جديد
+      switchInterval = 3800; // إعادة تعيين الفترة الزمنية إلى القيمة الافتراضية
+      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+    } else if (currentIndex == 3) { // التحقق من موقع الفهرس الخاص بتغيير الفترة
+      switchInterval = 5000; // تغيير الفترة إلى 6 ثواني
+      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+    } 
+    else if(currentIndex == 5){
+      switchInterval = 2500; // تغيير الفترة إلى 6 ثواني
+      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+    }
+    else {
+      needRestart = false;
+    }
+
+    // إذا كان يجب إعادة تشغيل الفاصل الزمني، قم بذلك
+    if (needRestart) {
+      restartInterval();
+    }
+  }, 500);
+}
+
+function startChangingText() {
+  if (intervalId !== null) return;
+  intervalId = setInterval(changeText, switchInterval);
+}
+
+function restartInterval() {
+  clearInterval(intervalId);
+  intervalId = setInterval(changeText, switchInterval);
+}
+
+
+let nameuser = document.getElementById("name_user")
+nameuser.innerHTML = window.location.search.substring(1)
+console.log(window.location.search.substring(1))
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var starsContainer = document.getElementById('stars-container');
+  var numberOfStars = 50; // يمكنك تغيير هذا العدد
+
+  for (var i = 0; i < numberOfStars; i++) {
+    var star = document.createElement('i');
+    star.classList.add('fa-solid', 'fa-star', 'fa-beat-fade');
+    var posX = Math.floor(Math.random() * 100); // لا تغيير هنا، نريد انتشارًا على عرض الشاشة بالكامل
+    var posY = Math.floor(Math.random() * 90); // يضمن بقاء النجمة ضمن 100vh
+
+    star.style.left = posX + 'vw';
+    star.style.top = posY + 'vh';
+    star.style.fontSize = Math.random() * 0.5 + 0.2 + 'em'; // لتغيير حجم النجوم بشكل عشوائي
+
+    starsContainer.appendChild(star);
+  }
+});
+
+
+
+
+</script>
+
+    
+    
 </body>
 </html>
