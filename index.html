@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="Bootstrab_File/css/bootstrap.css">
   <link rel="stylesheet" href="fonter/css/all.min.css">
-  <title>Document</title>
+  <title> EAD MUBARAK </title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap');
     body {
@@ -106,7 +106,7 @@
       <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
       <h1 id="changingText"> الله وأكبر </h1>
 
-      <footer id="foterr" class="row justify-content-evenly" style="background-color: rgba(210, 206, 255, 0.123); position: absolute; bottom: 0px; width: 100%; height: 50px; padding: 5px; opacity: 0;">
+      <footer id="foterr" class="row justify-content-evenly" style="background-color: rgba(210, 206, 255, 0.123); position: absolute; bottom: 0px; width: 100%; height: 50px; padding: 5px; opacity: 1;">
         <h6 style="background-color: rgba(210, 206, 255, 0.123); position: absolute; color: #ffffff; top: -19px; left: 0%; text-align: center; width: 100%; padding-left: 33%;"> سوف يظهر اسمك هنا </h6>
         <div>
           <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 10%;"></i>
@@ -174,7 +174,9 @@
     const decodedParams = decodeQueryParams();
     nmaeuser = JSON.stringify(decodedParams);
     document.getElementById("user-name").innerHTML = JSON.parse(nmaeuser).name
-    console.log(JSON.parse(nmaeuser).name)
+    encodeURIComponent(JSON.parse(nmaeuser).name)
+
+
     nameopen(JSON.parse(nmaeuser).name)
 
 
@@ -305,12 +307,26 @@ let name  = ''
 
 submuseeg.addEventListener("click", () =>{
   console.log("!")
-  name = `https://zain00abd.github.io/ead_mobarak/?name=${inpuser.value}`
+  name = `
+
+
+  https://zain00abd.github.io/ead_mobarak/?name=${encodeURIComponent(encodeURIComponent(inpuser.value))}
+
+
+
+
+  `
+  console.log(inpuser.value.replace(/ /g, '%20'))
   console.log(name)
   createParseData(inpuser.value)
 
   const message = name; // يمكنك تعديل نص الرسالة هنا
-const url = `whatsapp://send?text=${encodeURIComponent(message)}`;
+const url = `whatsapp://send?text=${name + ` 
+  \n\n
+   ` 
+   + 
+   "كل عام وأنتم بخير"
+  }`;
 window.open(url);
 
 
