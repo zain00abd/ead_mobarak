@@ -213,10 +213,11 @@
           switchInterval = 3800; // إعادة تعيين الفترة الزمنية إلى القيمة الافتراضية
           needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
         } else if (currentIndex == 3) { // التحقق من موقع الفهرس الخاص بتغيير الفترة
+          document.getElementById("foterr").style.opacity = 1;
           switchInterval = 5300; // تغيير الفترة إلى 6 ثواني
           needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
         } else if (currentIndex == 5) {
-          document.getElementById("foterr").style.opacity = 1;
+          
           switchInterval = 2000; // تغيير الفترة إلى 6 ثواني
           needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
         } else {
