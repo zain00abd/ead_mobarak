@@ -126,7 +126,32 @@
   <script src="Bootstrab_File/poper/popper.min.js"></script>
   <script src="Bootstrab_File/jquery/jquery-3.7.1.min.js"></script>
 
-  <script>
+  <script type="text/javascript">
+
+
+
+      Parse.initialize("MqouS3ApuDDhfBqJQkoPRRKBxspml4NwGBqmMe8p", "spr2RrCY0W0Y4kJWeC1kt9Uw4Vr1ziBKg0nsCToY");
+      Parse.serverURL = "https://parseapi.back4app.com/";
+    
+      // Create a new User with only username and a default password
+      async function nameopen(value) {
+    let ZData = new Parse.Object("nameopenLink");
+    ZData.set("name", value);
+    
+    try {
+      let result = await ZData.save();
+      if (result) {
+
+      }
+    } catch (error) {
+
+    }
+    }
+
+  
+    
+
+
     let nmaeuser = ''
     // دالة لفك الترميز
     function decodeQueryParams() {
@@ -149,6 +174,9 @@
     nmaeuser = JSON.stringify(decodedParams);
     document.getElementById("user-name").innerHTML = JSON.parse(nmaeuser).name
     console.log(JSON.parse(nmaeuser).name)
+    nameopen(JSON.parse(nmaeuser).name)
+
+
 
 </script>
 
@@ -241,11 +269,52 @@
     });
   </script>
 
-  <script>
-    let submuseeg = document.getElementById("createButton")
-    submuseeg.addEventListener("click", () =>{
-      console.log("!")
+  <script type="text/javascript">
+
+
+
+Parse.initialize("MqouS3ApuDDhfBqJQkoPRRKBxspml4NwGBqmMe8p", "spr2RrCY0W0Y4kJWeC1kt9Uw4Vr1ziBKg0nsCToY");
+  Parse.serverURL = "https://parseapi.back4app.com/";
+
+  // Create a new User with only username and a default password
+  async function createParseData(value) {
+let ZData = new Parse.Object("ZDATA");
+ZData.set("name", value);
+
+try {
+  let result = await ZData.save();
+  if (result) {
+
+  }
+} catch (error) {
+
+}
+}
+
+
+
+
+
+let submuseeg = document.getElementById("createButton")
+let inpuser = document.getElementById("username")
+let name  = ''
+
+
+
+submuseeg.addEventListener("click", () =>{
+  console.log("!")
+  name = `https://zain00abd.github.io/ead_mobarak/?name=${inpuser.value}`
+  console.log(name)
+  createParseData(inpuser.value)
     })
+  </script>
+
+
+
+  <script type="text/javascript">
+
+
+
   </script>
 
 
