@@ -306,28 +306,35 @@ let name  = ''
 
 
 submuseeg.addEventListener("click", () =>{
-  console.log("!")
-  name = `
 
+  if(inpuser.value !== ''){
 
-  https://zain00abd.github.io/ead_mobarak/?name=${encodeURIComponent(encodeURIComponent(inpuser.value))}
-
-
-
-
-  `
-  console.log(inpuser.value.replace(/ /g, '%20'))
-  console.log(name)
-  createParseData(inpuser.value)
-
-  const message = name; // يمكنك تعديل نص الرسالة هنا
-const url = `whatsapp://send?text=${name + ` 
-  \n\n
-   ` 
-   + 
-   "كل عام وأنتم بخير"
-  }`;
-window.open(url);
+    console.log("!")
+    name = `
+  
+  
+    https://zain00abd.github.io/ead_mobarak/?name=${encodeURIComponent(encodeURIComponent(inpuser.value))}
+  
+  
+  
+  
+    `
+    console.log(inpuser.value.replace(/ /g, '%20'))
+    console.log(name)
+    createParseData(inpuser.value)
+  
+    const message = name; // يمكنك تعديل نص الرسالة هنا
+  const url = `whatsapp://send?text=${name + ` 
+    \n\n
+     ` 
+     + 
+     "كل عام وأنتم بخير"
+    }`;
+  window.open(url);
+  }
+  else{
+    inpuser.focus()
+  }
 
 
     })
@@ -335,11 +342,6 @@ window.open(url);
 
 
 
-  <script type="text/javascript">
-
-
-
-  </script>
 
 
 
