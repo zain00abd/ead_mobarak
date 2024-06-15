@@ -95,7 +95,7 @@
   <div id="content">
     <div style="position: absolute; top: 50px; text-align: center; width: 100%; color: rgb(255, 255, 255); text-shadow: 0 0 10px rgb(236, 235, 224), 0 0 60px rgb(255, 255, 255), 0 0 70px rgb(255, 253, 253);">
       <h1 id="name_user" style="display: inline; text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 243, 243), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px yellow, 0 0 70px rgb(255, 253, 253); color: #ffc13b;"></h1>
-      <h1 style="display: inline;"> يهنئكم <small style="font-size: 30px; display: inline; text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 0, 0), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px rgb(255, 196, 0), 0 0 70px rgb(255, 213, 97); color: #ffd986;"> زين </small> بحلول عيد الأضحى المبارك </h1>
+      <h1 style="display: inline;"> يهنئكم <small id="user-name" style="font-size: 35px; display: inline; text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 0, 0), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px rgb(255, 196, 0), 0 0 70px rgb(255, 213, 97); color: #ffd986;"> </small> بحلول عيد الأضحى المبارك </h1>
       <h1> كل عام وانتم بخير </h1>
     </div>
 
@@ -118,12 +118,41 @@
       </footer>
     </div>
     <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
+    
 
   </div>
 
   <script src="Bootstrab_File/js/bootstrap.js"></script>
   <script src="Bootstrab_File/poper/popper.min.js"></script>
   <script src="Bootstrab_File/jquery/jquery-3.7.1.min.js"></script>
+
+  <script>
+    let nmaeuser = ''
+    // دالة لفك الترميز
+    function decodeQueryParams() {
+        // الحصول على معلمات الاستعلام
+        const queryString = window.location.search;
+        // فك الترميز
+        const urlParams = new URLSearchParams(queryString);
+
+        // إنشاء كائن لحفظ المعلمات بعد فك الترميز
+        const decodedParams = {};
+        for (const [key, value] of urlParams.entries()) {
+            // فك الترميز لكل مفتاح وقيمة
+            decodedParams[decodeURIComponent(key)] = decodeURIComponent(value);
+        }
+        return decodedParams;
+    }
+
+    // استخدام الدالة لعرض المعلمات المفكوكة في الصفحة
+    const decodedParams = decodeQueryParams();
+    nmaeuser = JSON.stringify(decodedParams);
+    document.getElementById("user-name").innerHTML = JSON.parse(nmaeuser).name
+    console.log(JSON.parse(nmaeuser).name)
+
+</script>
+
+
   <script>
     var textElement = document.getElementById("changingText");
       function playAudio() {
@@ -179,9 +208,9 @@
       intervalId = setInterval(changeText, switchInterval);
     }
 
-    let nameuser = document.getElementById("name_user");
-    nameuser.innerHTML = window.location.search.substring(1);
-    console.log(window.location.search.substring(1));
+    // let nameuser = document.getElementById("name_user");
+    // nameuser.innerHTML = window.location.search.substring(1);
+    // console.log(window.location.search.substring(1));
 
     document.addEventListener("DOMContentLoaded", function() {
       var starsContainer = document.getElementById('stars-container');
@@ -211,5 +240,17 @@
       textElement.style.opacity = 1;
     });
   </script>
+
+  <script>
+    let submuseeg = document.getElementById("createButton")
+    submuseeg.addEventListener("click", () =>{
+      console.log("!")
+    })
+  </script>
+
+
+
+
+
 </body>
 </html>
