@@ -8,233 +8,208 @@
   <link rel="stylesheet" href="fonter/css/all.min.css">
   <title>Document</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap');
+    body {
+      font-family: 'Cairo', sans-serif;
+      direction: rtl;
+      height: 100vh;
+      background: url(gte.jpg);
+      overflow: hidden; /* لمنع التمرير أثناء عرض زر البداية */
+    }
 
+    #stars-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
 
+    .fa-star {
+      position: absolute;
+      color: #FFD43B;
+    }
 
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.452);
+      text-align: center;
+    }
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap');
-body {
-  font-family: 'Cairo', sans-serif;
-  direction: rtl;
-}
+    input {
+      text-align: center;
+      color: aliceblue;
+      outline: none;
+      border: none;
+      border-radius: 12px;
+    }
 
-#stars-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-}
+    #changingText {
+      top: 50%;
+      text-align: center;
+      position: absolute;
+      font-size: 60px;
+      color: gold;
+      text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px rgb(204, 4, 4), 0 0 40px rgb(255, 187, 0), 0 0 50px gold, 0 0 60px yellow, 0 0 70px rgb(204, 4, 4);
+      direction: rtl;
+      transition: opacity 0.5s ease-in-out; /* انتقال لزيادة التدريجية في ظهور النص */
+      opacity: 0; /* البدء بإخفاء النص */
+    }
 
-.fa-star {
-  position: absolute;
-  color: #FFD43B;
+    #content {
+      display: none; /* إخفاء المحتوى الرئيسي في البداية */
+      opacity: 0; /* إخفاء العنصر في البداية */
+      transition: opacity 1s ease; /* تأثير أنيميشن تدريجي عند إظهار العنصر */
+    }
 
-}
-input::placeholder{
-  color: rgba(255, 255, 255, 0.452);
-  text-align: center;
-}
-input{
-  text-align: center;
-  color: aliceblue;
-  outline: none;
-  border: none;
-  border-radius: 12px;
-}
+    #startButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 30px;
+      padding: 20px;
+      background-color: #ffc13b;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s, opacity 0.3s; /* تأثير الأنيميشن عند النقر على الزر */
+    }
 
-#changingText {
-  top: 50%;
-  text-align: center;
-  position: absolute;
+    #startButton:active {
+      transform: scale(0.95); /* تأثير النقر */
+    }
 
-
-  font-size: 60px; /* حجم الخط، يمكن تعديله */
-  color: gold; /* لون الخط */
-  text-shadow: 0 0 10px gold, 0 0 20px gold, 0 0 30px rgb(204, 4, 4), 0 0 40px rgb(255, 187, 0), 0 0 50px gold, 0 0 60px yellow, 0 0 70px rgb(204, 4, 4); /* تأثير الوهج */
-  direction: rtl; /* لضمان أن يكون النص من اليمين لليسار */
-}
-
+    .fadeIn {
+      display: block !important;
+      opacity: 1 !important;
+    }
   </style>
 </head>
-<body style="
-
- height: 100vh;
- background: url(gte.jpg);
- ">
-
-<div style="position: absolute; top: 50px; text-align: center; width: 100%; color: rgb(255, 255, 255); text-shadow: 0 0 10px   rgb(236, 235, 224), 0 0 60px rgb(255, 255, 255), 0 0 70px rgb(255, 253, 253);">
-
-  <h1 id="name_user" style=" display: inline;   text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 243, 243), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px yellow, 0 0 70px rgb(255, 253, 253); /* تأثير الوهج */
-  color: #ffc13b;"></h1>
-  <h1 style=" display: inline;"> يهنئكم بحلول عيد الفطر المبارك </h1>
-  <h1> كل عام وانتم بخير </h1>
-</div>
-<div class="" style="display: flex; justify-content: center; align-items: center;">
-  <div style="opacity: 0.6;" id="stars-container"></div>
-
-
-
-
-
-
-
+<body>
+  <!-- زر البدء -->
+  <button id="startButton">ابدأ</button>
   <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
-  <button id="yyy" onclick="playAudio()">تشغيل</button>
-  
-  
-  
-  <!-- <video src="https://www.youtube.com/watch?v=vP9Ktnlwc94"></video> -->
-  
-  
-  
-  
-  
-  
-  <h1 id="changingText" style="transition: opacity 0.5s ease-in-out; opacity: 1;"> الله وأكبر  </h1>
-  <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 10%;"></i>
-  <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 57%; "></i>
-  <footer class="row justify-content-evenly" style="background-color: rgba(210, 206, 255, 0.123); position: absolute; bottom: 0px; width: 100%; height: 50px; padding: 5px;">
-    <input id="username" class="col-6 " type="text" style="width: 65%; background-color: rgb(39, 39, 39);" placeholder=" ادخل اسمك هنا ">
-    <button class="col-6 btn btn-success" id="createButton" style="width: 25%;">3</button>
-
-  </footer>
-</div>
 
 
+  <!-- المحتوى الرئيسي -->
+  <div id="content">
+    <div style="position: absolute; top: 50px; text-align: center; width: 100%; color: rgb(255, 255, 255); text-shadow: 0 0 10px rgb(236, 235, 224), 0 0 60px rgb(255, 255, 255), 0 0 70px rgb(255, 253, 253);">
+      <h1 id="name_user" style="display: inline; text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 243, 243), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px yellow, 0 0 70px rgb(255, 253, 253); color: #ffc13b;"></h1>
+      <h1 style="display: inline;"> يهنئكم <small style="font-size: 30px; display: inline; text-shadow: 0 0 10px rgb(190, 186, 162), 0 0 20px rgb(238, 236, 225), 0 0 30px rgb(255, 0, 0), 0 0 40px rgb(255, 187, 0), 0 0 50px rgb(236, 235, 224), 0 0 60px rgb(255, 196, 0), 0 0 70px rgb(255, 213, 97); color: #ffd986;"> زين </small> بحلول عيد الأضحى المبارك </h1>
+      <h1> كل عام وانتم بخير </h1>
+    </div>
 
+    <div style="display: flex; justify-content: center; align-items: center;">
+      <div style="opacity: 0.6;" id="stars-container"></div>
 
+      <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
+      <h1 id="changingText"> الله وأكبر </h1>
 
+      <footer class="row justify-content-evenly" style="background-color: rgba(210, 206, 255, 0.123); position: absolute; bottom: 0px; width: 100%; height: 50px; padding: 5px;">
+        <h6 style="background-color: rgba(210, 206, 255, 0.123); position: absolute; color: #ffffff; top: -19px; left: 0%; text-align: center; width: 100%; padding-left: 33%;"> سوف يظهر اسمك هنا </h6>
+        <div>
+          <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 10%;"></i>
+          <i class="fa-solid fa-down-long fa-bounce fa-xl" style="color: #FFD43B; position: absolute; bottom: 60px; right: 57%;"></i>
+        </div>
+        <input id="username" class="col-6" type="text" style="width: 60%; background-color: rgb(39, 39, 39);" placeholder=" ادخل اسمك هنا ">
+        <button class="col-6 btn btn-success" id="createButton" style="width: 28%;">ارسال
+          <i class="fa-brands fa-whatsapp fa-xl" style="color: #ffffff;"></i>
+        </button>
+      </footer>
+    </div>
+    <audio id="audioPlayer" src="./extracted_audio.mp3" preload="metadata"></audio>
 
-
-
-
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-    // Initialize Parse
-    Parse.initialize("MqouS3ApuDDhfBqJQkoPRRKBxspml4NwGBqmMe8p", "spr2RrCY0W0Y4kJWeC1kt9Uw4Vr1ziBKg0nsCToY");
-    Parse.serverURL = "https://parseapi.back4app.com/";
-
-    // Create a new User with only username and a default password
-    async function createParseData() {
-  let ZData = new Parse.Object("ZDATA");
-  ZData.set("name", document.getElementById("username").value);
-  
-  try {
-    let result = await ZData.save();
-    if (result) {
-      alert(`New data created with success! ObjectId: ${result.id}`);
-    }
-  } catch (error) {
-    alert(`Error: ${error.message}`);
-  }
-}
-
-
-    document.getElementById("createButton").addEventListener("click", async function () {
-      createParseData();
-    });
-  </script>
-
+  </div>
 
   <script src="Bootstrab_File/js/bootstrap.js"></script>
   <script src="Bootstrab_File/poper/popper.min.js"></script>
   <script src="Bootstrab_File/jquery/jquery-3.7.1.min.js"></script>
-
   <script>
-    function playAudio() {
-      var audio = document.getElementById("audioPlayer");
-      audio.play();
-      restartInterval()
+    var textElement = document.getElementById("changingText");
+      function playAudio() {
+        var audio = document.getElementById("audioPlayer");
+        audio.play();
+        restartInterval()
+      }
+
+
+    var texts = ["الله وأكبر", "الله وأكبر", "لا إلاه إلا الله", "الله وأكبر", "الله وأكبر", "و لله الحمد"];
+    var currentIndex = 0;
+    var intervalId = null; // لتخزين معرف setInterval
+    var switchInterval = 4000; // الفترة الافتراضية بين التبديلات
+    var needRestart = false; // علامة لتحديد ما إذا كان يجب إعادة تشغيل الفاصل الزمني
+
+    function changeText() {
+      textElement.style.opacity = 0;
+
+      setTimeout(function() {
+        textElement.innerHTML = texts[currentIndex];
+        textElement.style.opacity = 1;
+
+        currentIndex++;
+
+        if (currentIndex >= texts.length) {
+          currentIndex = 0; // إعادة التعيين لبدء الدورة من جديد
+          switchInterval = 3800; // إعادة تعيين الفترة الزمنية إلى القيمة الافتراضية
+          needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+        } else if (currentIndex == 3) { // التحقق من موقع الفهرس الخاص بتغيير الفترة
+          switchInterval = 5300; // تغيير الفترة إلى 6 ثواني
+          needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+        } else if (currentIndex == 5) {
+          switchInterval = 2000; // تغيير الفترة إلى 6 ثواني
+          needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
+        } else {
+          needRestart = false;
+        }
+
+        // إذا كان يجب إعادة تشغيل الفاصل الزمني، قم بذلك
+        if (needRestart) {
+          restartInterval();
+        }
+      }, 500);
     }
 
-var texts = ["الله وأكبر", "الله وأكبر", "لا إلاه إلا الله", "الله وأكبر", "الله وأكبر", "و لله الحمد"];
-var currentIndex = 0;
-var intervalId = null; // لتخزين معرف setInterval
-var switchInterval = 4000; // الفترة الافتراضية بين التبديلات
-var needRestart = false; // علامة لتحديد ما إذا كان يجب إعادة تشغيل الفاصل الزمني
-
-function changeText() {
-  var textElement = document.getElementById("changingText");
-  textElement.style.opacity = 0;
-  textElement.style
-
-  setTimeout(function() {
-    textElement.innerHTML = texts[currentIndex];
-    textElement.style.opacity = 1;
-
-    currentIndex++;
-    
-    // تحقق إذا كانت هذه هي الدورة الأخيرة للنص
-    if (currentIndex >= texts.length) {
-      currentIndex = 0; // إعادة التعيين لبدء الدورة من جديد
-      switchInterval = 3800; // إعادة تعيين الفترة الزمنية إلى القيمة الافتراضية
-      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
-    } else if (currentIndex == 3) { // التحقق من موقع الفهرس الخاص بتغيير الفترة
-      switchInterval = 5000; // تغيير الفترة إلى 6 ثواني
-      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
-    } 
-    else if(currentIndex == 5){
-      switchInterval = 2500; // تغيير الفترة إلى 6 ثواني
-      needRestart = true; // تحديد ضرورة إعادة تشغيل الفاصل الزمني
-    }
-    else {
-      needRestart = false;
+    function startChangingText() {
+      if (intervalId !== null) return;
+      intervalId = setInterval(changeText, switchInterval);
     }
 
-    // إذا كان يجب إعادة تشغيل الفاصل الزمني، قم بذلك
-    if (needRestart) {
-      restartInterval();
+    function restartInterval() {
+      clearInterval(intervalId);
+      intervalId = setInterval(changeText, switchInterval);
     }
-  }, 500);
-}
 
-function startChangingText() {
-  if (intervalId !== null) return;
-  intervalId = setInterval(changeText, switchInterval);
-}
+    let nameuser = document.getElementById("name_user");
+    nameuser.innerHTML = window.location.search.substring(1);
+    console.log(window.location.search.substring(1));
 
-function restartInterval() {
-  clearInterval(intervalId);
-  intervalId = setInterval(changeText, switchInterval);
-}
+    document.addEventListener("DOMContentLoaded", function() {
+      var starsContainer = document.getElementById('stars-container');
+      var numberOfStars = 50; // يمكنك تغيير هذا العدد
 
+      for (var i = 0; i < numberOfStars; i++) {
+        var star = document.createElement('i');
+        star.classList.add('fa-solid', 'fa-star', 'fa-beat-fade');
+        var posX = Math.floor(Math.random() * 100); // لا تغيير هنا، نريد انتشارًا على عرض الشاشة بالكامل
+        var posY = Math.floor(Math.random() * 90); // يضمن بقاء النجمة ضمن 100vh
 
-let nameuser = document.getElementById("name_user")
-nameuser.innerHTML = window.location.search.substring(1)
-console.log(window.location.search.substring(1))
+        star.style.left = posX + 'vw';
+        star.style.top = posY + 'vh';
+        star.style.fontSize = Math.random() * 0.5 + 0.2 + 'em'; // لتغيير حجم النجوم بشكل عشوائي
 
+        starsContainer.appendChild(star);
+      }
+    });
 
-document.addEventListener("DOMContentLoaded", function() {
-  var starsContainer = document.getElementById('stars-container');
-  var numberOfStars = 50; // يمكنك تغيير هذا العدد
-
-  for (var i = 0; i < numberOfStars; i++) {
-    var star = document.createElement('i');
-    star.classList.add('fa-solid', 'fa-star', 'fa-beat-fade');
-    var posX = Math.floor(Math.random() * 100); // لا تغيير هنا، نريد انتشارًا على عرض الشاشة بالكامل
-    var posY = Math.floor(Math.random() * 90); // يضمن بقاء النجمة ضمن 100vh
-
-    star.style.left = posX + 'vw';
-    star.style.top = posY + 'vh';
-    star.style.fontSize = Math.random() * 0.5 + 0.2 + 'em'; // لتغيير حجم النجوم بشكل عشوائي
-
-    starsContainer.appendChild(star);
-  }
-});
-
-
-
-
-</script>
-
-    
-    
+    // وظيفة لعرض المحتوى عند الضغط على زر البدء
+    document.getElementById("startButton").addEventListener("click", function() {
+      document.getElementById("startButton").style.display = "none"; // إخفاء زر البدء
+      var content = document.getElementById("content");
+      content.classList.add("fadeIn"); // إضافة كلاس للأنيميشن
+      playAudio(); // تشغيل الصوت والنص المتغير
+      startChangingText(); // بدء تغيير النصوص
+      textElement.style.opacity = 1;
+    });
+  </script>
 </body>
 </html>
